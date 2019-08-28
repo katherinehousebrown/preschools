@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<h1 th:text="${title}"></h1>
+
+    <a href="/admin/add">Add New School</a><br>
+<br>
+
+<p th:unless="${names}" and ${names.size()}>No Preschools Listed</p>
+
+
+<ul>
+    <li th:each="address : ${addresses}" th:text="${address.name}" ></li> <!--TODO add link to each school-->
+</ul>
+
+</body>
+</html>

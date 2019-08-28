@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<h1 th:text="${title}"></h1>
+<body class="container">
+<form method="post" style="max-width:500px;" th:object="${SchoolInfo}">
+
+    <div class="margin-top: 10"><h2>New School Info</h2></div><br>
+    <div class="form-group">
+        <label th:for="ratio">How many students per teacher? </label>
+        <input type="number" class="form-control" th:field={*ratio} placeholder="Students per Teacher">
+    </div><br>
+
+    <p><div class="form-group">
+    <label>Does the child need to be potty trained?</label>
+</div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" th:field={*inlineCheckbox1} value="yes">
+        <label class="form-check-label" th:for="inlineCheckbox1">Yes</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" th:field={*inlineCheckbox2} value="no">
+        <label class="form-check-label" th:for="inlineCheckbox2">No</label>
+    </div></p>
+
+    <p><div class="form-group">
+    <label th:for="hours">How many hours per week?</label>
+    <input type="number" class="form-control" th:field={*hours} placeholder="Hours per week">
+</div><br>
+
+    <div>
+        <label th:for="tuition">Tuition</label>
+        <input type="number" min="0.00" max="100000" step="0.01" class="form-control"
+               th:field="{*tuition}" placeholder="$ per month" required="required">
+    </div><br>
+
+    <input type="submit" value="Submit"><br>
+</form>
+
+</body>
+</body>
+</html>
+
+</body>
+</html>
