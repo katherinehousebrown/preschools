@@ -24,15 +24,18 @@ public class SchoolInfo {
     @NotNull
     Double tuition;
 
-    public SchoolInfo(Integer ration, String pottyTrained, Integer hours, Double tuition){
+    //constructor
+    public SchoolInfo(Integer ratio, String pottyTrained, Integer hours, Double tuition){
         this.ratio = ratio;
         this.pottyTrained = pottyTrained;
         this.hours = hours;
         this.tuition = tuition;
     }
 
-    SchoolInfo(){}
+    //for hibernate
+    public SchoolInfo(){}
 
+    //getters and setters
     public int getId() {
         return id;
     }

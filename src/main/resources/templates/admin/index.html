@@ -3,13 +3,29 @@
 <head th:replace="fragments :: head"></head>
 <body>
 
-<h1 th:text="${title}"></h1>
+<div class="bg">
+<p class="py-5 text-center"></p>
+<div class="container">
+    <div class="page-header">
+        <div class="clearfix">
+            <span class="float-right"><a href="/admin/add" class="btn btn-info" role="button">Add New Preschool</a></div></span>
+        </div>
+        <div>
+            <h1 th:text="${title}"></h1>
+        </div>
+    </div>
+</div>
+</div>
 
-    <a href="/admin/add">Add New School</a><br>
-<br>
+<div class="card card-body bg-light">
+    <div class="list-group">
+        <a href="#" class="list-group-item">First item</a>
+        <a href="#" class="list-group-item">Second item</a>
+        <a href="#" class="list-group-item">Third item</a>
+    </div>
+</div>
 
-<p th:unless="${names}" and ${names.size()}>No Preschools Listed</p>
-
+<p th:unless="${addresses}" and ${addresses.size()}>No Preschools Listed</p>
 
 <ul>
     <li th:each="address : ${addresses}" th:text="${address.name}" ></li> <!--TODO add link to each school-->

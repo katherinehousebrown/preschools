@@ -27,7 +27,7 @@ public class AddressController {
 
     @RequestMapping(value = "")
     public String index(Model model){
-        model.addAttribute("title","Local Preschools");
+        model.addAttribute("title","Admin Page");
         model.addAttribute("addresses", addressDao.findAll());
         return "admin/index";
     }

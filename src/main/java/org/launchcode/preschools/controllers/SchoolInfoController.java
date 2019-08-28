@@ -1,5 +1,6 @@
 package org.launchcode.preschools.controllers;
 
+import org.launchcode.preschools.models.data.AddressDao;
 import org.launchcode.preschools.models.data.SchoolInfoDao;
 import org.launchcode.preschools.models.forms.SchoolInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 
 @Controller
 @RequestMapping("admin")
@@ -21,17 +21,27 @@ public class SchoolInfoController {
     @Autowired
     private SchoolInfoDao schoolInfoDao;
 
-    static ArrayList<SchoolInfo> schoolInfos = new ArrayList<>(); //need this?
+    @Autowired
+    private AddressDao addressDao;
 
-    @RequestMapping(value = "add-info", method = RequestMethod.POST)
-    public String proccessSchoolInfoForm(@ModelAttribute @Valid SchoolInfo newSchoolInfo, Errors errors, Model model) {
+    @RequestMapping(value = "schoolInfo", method = RequestMethod.GET)
+    public String displaySchoolInfoForm(Model model)
+    {
+        model.addAttribute("title","Add School Information");
+        model.addAttribute(new SchoolInfo());
+        return "admin/schoolInfo";
+    }
 
-        if (errors.hasErrors()) {
+    @RequestMapping(value = "schoolInfo", method = RequestMethod.POST)
+    public String proccessSchoolInfoForm(@ModelAttribute @Valid SchoolInfo newSchoolInfo, Errors errors,
+                                         Model model)
+    {
+        if (errors.hasErrors())
+        {
             model.addAttribute("title", "");
             return "admin/schoolInfo";
         }
-
         schoolInfoDao.save(newSchoolInfo);
-        return "/admin/index"; //display list of all schools...or just park entered...
+        return "/admin/index"; //display list of all schools...or just school entered...?
     }
 }

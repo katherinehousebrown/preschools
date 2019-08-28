@@ -1,6 +1,5 @@
 package org.launchcode.preschools.models.data;
 
-
 import org.launchcode.preschools.models.forms.Address;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
