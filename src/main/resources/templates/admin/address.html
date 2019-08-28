@@ -6,10 +6,10 @@
 
 <form method="post" style="max-width:500px;" th:object="${address}"> <!--change to <form method="post" action="/schoolInfo/add">
                                                   to redirect to the next form after complete-->
-    <div class="margin-top: 10"><h2>New Preschool</h2></div><br/>
+
     <div class="form-group">
         <label th:for="name">Name of School</label>
-        <input class="form-control" th:field="*{name}" required="required" placeholder="enter name here" />
+        <input class="form-control" th:field="*{name}" required="required" placeholder="Enter Name Here" />
         <span th:errors="*{name}" class="error"></span>
     </div>
     <div class="form-group">
@@ -27,18 +27,17 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label th:for="city">City</label>
-            <input class="form-control" th:field="*{city}" required="required">
+            <input class="form-control" th:field="*{city}" placeholder="City" required="required">
             <span th:errors="*{city}" class="error"></span>
         </div>
         <div class="form-group col-md-4">
             <label th:for="state">State</label>
             <select th:field="*{state}" required="required" class="form-control">
-                <option selected>Choose...</option>
-                <option th:value="AL">Alabama</option>
-                <option th:value="AK">Alaska</option>
-                <option th:value="AZ">Arizona</option>
-                <option th:value="AR">Arkansas</option>
-                <option th:value="CA">California</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
                 <option value="CO">Colorado</option>
                 <option value="CT">Connecticut</option>
                 <option value="DE">Delaware</option>
@@ -89,7 +88,7 @@
         </div>
         <div class="form-group col-md-2">
             <label th:for="zipCode">Zip</label>
-            <input class="form-control" th:field="*{zipCode}" required="required"/>
+            <input class="form-control" th:field="*{zipCode}" placeholder="Zip" required="required"/>
             <span th:errors="*{zipCode}" class="error"></span><br/><br/>
             <input type="submit" value="Submit School Information"/>
         </div>
