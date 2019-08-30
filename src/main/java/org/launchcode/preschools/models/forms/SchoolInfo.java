@@ -25,7 +25,8 @@ public class SchoolInfo {
     Double tuition;
 
     //constructor
-    public SchoolInfo(Integer ratio, String pottyTrained, Integer hours, Double tuition){
+    public SchoolInfo(Integer ratio, String pottyTrained, Integer hours, Double tuition)
+    {
         this.ratio = ratio;
         this.pottyTrained = pottyTrained;
         this.hours = hours;

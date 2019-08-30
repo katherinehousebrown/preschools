@@ -10,12 +10,11 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("admin")
+@RequestMapping("/admin")
 public class SchoolInfoController {
 
     @Autowired
@@ -27,18 +26,18 @@ public class SchoolInfoController {
     @RequestMapping(value = "schoolInfo", method = RequestMethod.GET)
     public String displaySchoolInfoForm(Model model)
     {
-        model.addAttribute("title","Add School Information");
+        model.addAttribute("title", "Add School Information");
         model.addAttribute(new SchoolInfo());
         return "admin/schoolInfo";
     }
 
     @RequestMapping(value = "schoolInfo", method = RequestMethod.POST)
-    public String proccessSchoolInfoForm(@ModelAttribute @Valid SchoolInfo newSchoolInfo, Errors errors,
-                                         Model model)
+    public String processSchoolInfoForm(@ModelAttribute @Valid SchoolInfo newSchoolInfo, Errors errors,
+                                        Model model)
     {
         if (errors.hasErrors())
         {
-            model.addAttribute("title", "");
+            model.addAttribute("title", "Add School Information");
             return "admin/schoolInfo";
         }
         schoolInfoDao.save(newSchoolInfo);

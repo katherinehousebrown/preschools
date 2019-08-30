@@ -17,17 +17,17 @@
 
 <div class="card card-body bg-light">
     <div class="list-group">
-        <a href="#" class="list-group-item">School</a>
+        <p th:unless="${addresses}" and ${addresses.size()}>No Preschools Listed</p>
+        <ul>
+            <li th:each="address : ${addresses}" th:text="${address.name}" ></li> <!--TODO add link to each school-->
+        </ul>
+     <!--   <a href="#" class="list-group-item">School</a>
         <a href="#" class="list-group-item">Another School</a>
-        <a href="#" class="list-group-item">A different School</a>
+        <a href="#" class="list-group-item">A different School</a> -->
     </div>
 </div>
 
-<p th:unless="${addresses}" and ${addresses.size()}>No Preschools Listed</p>
 
-<ul>
-    <li th:each="address : ${addresses}" th:text="${address.name}" ></li> <!--TODO add link to each school-->
-</ul>
 
 </body>
 </html>

@@ -3,6 +3,7 @@ package org.launchcode.preschools.models.forms;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -14,7 +15,6 @@ public class Address {
     private int id;
 
     @NotNull
-    @Size(min=1, message = "Name can not be left empty.")
     String name;
 
     @NotNull
@@ -34,7 +34,8 @@ public class Address {
 
     //constructors
     public Address(String name, String address1, String address2, String city, String state,
-            Integer zipCode) {
+            Integer zipCode)
+    {
         this.name = name;
         this.address1 = address1;
         this.address2 = address2;
@@ -43,6 +44,7 @@ public class Address {
         this.zipCode = zipCode;
     }
 
+    //for hibernate
     public Address(){}
 
     //getters and setters

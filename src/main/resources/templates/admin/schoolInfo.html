@@ -3,44 +3,45 @@
 <head th:replace="fragments :: head"></head>
 
 <body class="container">
-<h1 th:text="${title}"></h1>
-<form method="post" style="max-width:500px;" class="form-control" th:object="${SchoolInfo}">
+    <h1 th:text="${title}"></h1>
 
-    <div class="margin-top: 10"><h2>New School Info</h2></div><br>
+<form method="post" style="max-width:500px;" class="form-control" th:object="${schoolInfo}">
+
     <div class="form-group">
-        <label th:for="ratio">How many students per teacher? </label>
-        <input th:type="number" class="form-control" th:field={*ratio} placeholder="Students per Teacher">
-    </div><br>
+        <label th:for="ratio">How many students per teacher?</label>
+        <input type="number" class="form-control" th:field="*{ratio}" placeholder="Students per Teacher"/>
+        <span th:errors="*{ratio}" class="error"></span>
+    </div>
 
     <p><div class="form-group">
-    <label>Does the child need to be potty trained?</label>
-</div>
+        <label>Does the child need to be potty trained?</label>
+    </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" th:field={*pottyTrained} value="yes">
+        <input class="form-check-input" type="checkbox" th:field="*{pottyTrained}" value="yes"/>
         <label class="form-check-label" th:for="inlineCheckbox1">Yes</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" th:field={*pottyTrained} value="no">
+        <input class="form-check-input" type="checkbox" th:field="*{pottyTrained}" value="no"/>
         <label class="form-check-label" th:for="inlineCheckbox2">No</label>
     </div></p>
 
     <p><div class="form-group">
-    <label th:for="hours">How many hours per week?</label>
-    <input type="number" class="form-control" th:field={*hours} placeholder="Hours per week">
-</div><br>
+        <label th:for="hours">How many hours per week?</label>
+        <input type="number" class="form-control" th:field="*{hours}"
+               placeholder="Hours per week"/>
+        <span th:errors="*{hours}" class="error"></span>
+    </div></p>
 
     <div>
         <label th:for="tuition">Tuition</label>
         <input type="number" min="0.00" max="100000" step="0.01" class="form-control"
-               th:field="{*tuition}" placeholder="$ per month" required="required">
-    </div><br>
+               th:field="*{tuition}" placeholder="$ per month" required="required"/>
+        <span th:errors="*{tuition}" class="error"></span>
+    </div><br/>
 
-    <input type="submit" value="Submit"><br>
+    <input type="submit" value="Submit School Information"><br>
 </form>
 
-
-</body>
-</html>
 
 </body>
 </html>
