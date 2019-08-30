@@ -5,7 +5,7 @@
 <body class="container">
     <h1 th:text="${title}"></h1>
 
-<form method="post" style="max-width:500px;" th:object="${address}"> <!--change to <form method="post" action="/schoolInfo/add">
+<form method="post" style="max-width:500px;" th:object="${address}" action="/admin/schoolInfo"> <!--change to <form method="post" action="/admin/schoolInfo>
                                                   to redirect to the next form after complete-->
 
     <div class="form-group">
