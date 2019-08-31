@@ -1,4 +1,4 @@
-package org.launchcode.preschools.models.forms;
+package org.launchcode.preschools.models.forms.Admin;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

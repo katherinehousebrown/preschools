@@ -1,9 +1,9 @@
 package org.launchcode.preschools.controllers;
 
 import org.launchcode.preschools.models.data.SchoolInfoDao;
-import org.launchcode.preschools.models.forms.Address;
+import org.launchcode.preschools.models.forms.Admin.Address;
 import org.launchcode.preschools.models.data.AddressDao;
-import org.launchcode.preschools.models.forms.SchoolInfo;
+import org.launchcode.preschools.models.forms.Admin.SchoolInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/admin")
-public class AddressController {
+public class AdminController {
 
     @Autowired
     private AddressDao addressDao;
@@ -49,7 +49,6 @@ public class AddressController {
             model.addAttribute("title", "Add New Preschool");
             return "admin/address";
         }
-
         addressDao.save(newAddress);
         return "/admin/schoolInfo"; //after address form is filled out, direct to info form
 
@@ -65,7 +64,8 @@ public class AddressController {
 
     @RequestMapping(value = "schoolInfo", method = RequestMethod.POST)
     public String processSchoolInfoForm(@ModelAttribute @Valid SchoolInfo newSchoolInfo, Errors errors,
-                                        Model model) {
+                                        Model model)
+    {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add School Information");
             return "admin/schoolInfo";
