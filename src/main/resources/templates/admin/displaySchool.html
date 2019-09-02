@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
+
+<body class="container card card-body bg-light" th:each="address : ${addresses}">
+    <strong><h1 th:text="${address.name}/></strong><br/>
+            <p th:text="${address.address1}
+               th:text="${address.address2}>
+            < th:text="${address.city} />,<h3 th:text="${address.state}" /> <h3 th:text="${address.zipCode} />
 
 </body>
 </html>

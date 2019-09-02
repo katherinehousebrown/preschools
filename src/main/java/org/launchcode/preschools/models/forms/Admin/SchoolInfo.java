@@ -1,8 +1,6 @@
 package org.launchcode.preschools.models.forms.Admin;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 
@@ -23,6 +21,10 @@ public class SchoolInfo {
 
     @NotNull
     Double tuition;
+
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 
     //constructor
     public SchoolInfo(Integer ratio, String pottyTrained, Integer hours, Double tuition)

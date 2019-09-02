@@ -50,7 +50,7 @@ public class AdminController {
             return "admin/address";
         }
         addressDao.save(newAddress);
-        return "/admin/schoolInfo"; //after address form is filled out, direct to info form
+        return "redirect:/admin/schoolInfo"; //after address form is filled out, redirect to info form
 
     }
 
@@ -58,6 +58,8 @@ public class AdminController {
     public String displaySchoolInfoForm(Model model)
     {
         model.addAttribute("title", "Add School Information");
+        /*TODO: pull the school name and add to title, possible error enter address
+        without entering info, leaving incorrect mapping */
         model.addAttribute(new SchoolInfo());
         return "admin/schoolInfo";
     }

@@ -32,9 +32,13 @@ public class Address {
     @NotNull
     Integer zipCode;
 
+    @NotNull
+    String website;
+
+
     //constructors
     public Address(String name, String address1, String address2, String city, String state,
-            Integer zipCode)
+            Integer zipCode, String website)
     {
         this.name = name;
         this.address1 = address1;
@@ -42,12 +46,21 @@ public class Address {
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
+        this.website = website;
     }
 
     //for hibernate
     public Address(){}
 
     //getters and setters
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
 
     public String getAddress1() {
         return address1;
