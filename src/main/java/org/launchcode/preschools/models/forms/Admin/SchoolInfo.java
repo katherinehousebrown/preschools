@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 public class SchoolInfo {
     @Id
     @GeneratedValue
+    @Column(name="schoolInfo_FK") //for one to one ratio table readability
     int id;
 
     @NotNull
@@ -21,10 +22,6 @@ public class SchoolInfo {
 
     @NotNull
     Double tuition;
-
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
 
     //constructor
     public SchoolInfo(Integer ratio, String pottyTrained, Integer hours, Double tuition)

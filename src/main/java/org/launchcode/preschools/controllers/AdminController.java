@@ -73,6 +73,6 @@ public class AdminController {
             return "admin/schoolInfo";
         }
         schoolInfoDao.save(newSchoolInfo);
-        return "/admin/index"; //display list of all schools...or just school entered...?
+        return "redirect:/admin"; //display list of all schools...or just school entered...?
     }
 }

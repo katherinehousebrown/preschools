@@ -16,14 +16,14 @@
 
 
 <div class="card card-body bg-light">
-    <div class="list-group">
+    <div th:each="address : ${addresses}">
         <p th:unless="${addresses}" and ${addresses.size()}>No Preschools Listed</p>
-        <ul>
-            <li th:each="address : ${addresses}" th:text="${address.name}" ></li> <!--TODO add link to each school-->
-        </ul>
-     <!--   <a href="#" class="list-group-item">School</a>
-        <a href="#" class="list-group-item">Another School</a>
-        <a href="#" class="list-group-item">A different School</a> -->
+            <table class="table table-striped">
+                <tr>  <!--TODO not displaying as a link...-->
+                    <th th:text="${address.name}"></th>
+                        <td th:text="${address.address1} + ' , ' + ${address.city} + ' , ' + ${address.state} + ' , ' + ${address.zipCode}"></td>
+                </tr>
+            </table>
     </div>
 </div>
 

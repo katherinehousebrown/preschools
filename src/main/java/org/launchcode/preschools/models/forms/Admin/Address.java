@@ -18,10 +18,7 @@ public class Address {
     String name;
 
     @NotNull
-    String address1;
-
-    @NotNull
-    String address2;
+    String address;
 
     @NotNull
     String city;
@@ -35,14 +32,17 @@ public class Address {
     @NotNull
     String website;
 
+    //create one to one mapping for Address and SchoolInfo
+    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER) //cascade ALL: if merged, persist, refresh, or deleted one row, same applied to corresponding row on other table
+    @JoinColumn(name="schoolInfo_FK") //name column in table FK=foreign key
+    private SchoolInfo schoolInfo;
 
     //constructors
-    public Address(String name, String address1, String address2, String city, String state,
+    public Address(String name, String address, String city, String state,
             Integer zipCode, String website)
     {
         this.name = name;
-        this.address1 = address1;
-        this.address2 = address2;
+        this.address = address;
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
@@ -54,6 +54,15 @@ public class Address {
 
     //getters and setters
 
+
+    public SchoolInfo getSchoolInfo() {
+        return schoolInfo;
+    }
+
+    public void setSchoolInfo(SchoolInfo schoolInfo) {
+        this.schoolInfo = schoolInfo;
+    }
+
     public String getWebsite() {
         return website;
     }
@@ -63,19 +72,11 @@ public class Address {
     }
 
     public String getAddress1() {
-        return address1;
+        return address;
     }
 
     public void setAddress1(String address1) {
-        this.address1 = address1;
-    }
-
-    public String getAddress2() {
-        return address2;
-    }
-
-    public void setAddress2(String address2) {
-        this.address2 = address2;
+        this.address = address1;
     }
 
     public String getCity() {
@@ -115,10 +116,10 @@ public class Address {
     }
 
     public String getEmail() {
-        return address1;
+        return address;
     }
 
     public void setEmail(String email) {
-        this.address1 = email;
+        this.address = email;
     }
 }
