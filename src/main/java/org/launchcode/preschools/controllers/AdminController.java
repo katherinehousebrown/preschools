@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -79,14 +76,24 @@ public class AdminController {
         return "redirect:/admin"; //display list of all schools...or just school entered...?
     }
 
-//    @RequestMapping(value = "displaySchool/{addressId}")
-//    public String displaySchool(Model model, @PathVariable int addressId)
-//    {
-//        Address address = addressDao.findOne(addressId);
-//        model.addAttribute(address, )
-//
-//
-//
-//    }
+    @RequestMapping(value = "displaySchool/{addressId}", method = RequestMethod.GET)
+    public String displaySchool(Model model, @PathVariable int addressId)
+    {
+        Address address = addressDao.findById(addressId).orElse(null);
+        //get schoolInfo from FK,
+        //SchoolInfo schoolInfo = schoolInfoDoa.findById
+        //model.addAttribute("schoolInfo", schoolInfo)
+        model.addAttribute("address", address);
+        model.addAttribute("title", address.getName());
+        return "admin/displaySchool";
+    }
+
+    @RequestMapping(value = "deleteSchool", method = RequestMethod.GET)
+    public String displayDeleteSchool(Model model)
+    {
+        model.addAttribute("addresses", addressDao.findAll());
+        model.addAttribute("title", "Delete Preschool");
+        return "redirect:/";
+    }
 
 }

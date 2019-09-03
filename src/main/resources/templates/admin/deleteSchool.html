@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
+<h1 th:text="${title}"></h1>
+
+<nav th:replace="fragments :: adminNav"></nav>
+
+<form method="post">
+
+    <div class="">
+
+        <div th:each="address: ${addresses}" class="checkbox col-3"  style="display:inline-block">
+            <input type="checkbox" name="addressId" th:value="${address.id}" th:id="${address.id}"/>
+            <label th:for="${address.id}" th:text="${address.name}"></label>
+            <br />
+        </div>
+    </div>
+    <br/>
+    <div class="search-button">
+        <input type="submit" class="btn btn-primary" value="Delete Park" />
+    </div>
+    <br />
+</form>
+
+</body>
+</html>
