@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 
 @Entity
 public class Address {
@@ -18,7 +18,7 @@ public class Address {
     String name;
 
     @NotNull
-    String address;
+    String address1;
 
     @NotNull
     String city;
@@ -37,12 +37,13 @@ public class Address {
     @JoinColumn(name="schoolInfo_FK") //name column in table FK=foreign key
     private SchoolInfo schoolInfo;
 
+
     //constructors
-    public Address(String name, String address, String city, String state,
+    public Address(String name, String address1, String city, String state,
             Integer zipCode, String website)
     {
         this.name = name;
-        this.address = address;
+        this.address1 = address1;
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
@@ -54,6 +55,15 @@ public class Address {
 
     //getters and setters
 
+
+
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
 
     public SchoolInfo getSchoolInfo() {
         return schoolInfo;
@@ -69,14 +79,6 @@ public class Address {
 
     public void setWebsite(String website) {
         this.website = website;
-    }
-
-    public String getAddress1() {
-        return address;
-    }
-
-    public void setAddress1(String address1) {
-        this.address = address1;
     }
 
     public String getCity() {
@@ -115,11 +117,4 @@ public class Address {
         this.name = name;
     }
 
-    public String getEmail() {
-        return address;
-    }
-
-    public void setEmail(String email) {
-        this.address = email;
-    }
 }
