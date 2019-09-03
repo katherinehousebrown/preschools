@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,6 +24,8 @@ public class AdminController {
 
     @Autowired
     private SchoolInfoDao schoolInfoDao;
+
+    public Double pricePerHour;
 
     @RequestMapping(value = "")
     public String index(Model model)
@@ -75,4 +78,15 @@ public class AdminController {
         schoolInfoDao.save(newSchoolInfo);
         return "redirect:/admin"; //display list of all schools...or just school entered...?
     }
+
+//    @RequestMapping(value = "displaySchool/{addressId}")
+//    public String displaySchool(Model model, @PathVariable int addressId)
+//    {
+//        Address address = addressDao.findOne(addressId);
+//        model.addAttribute(address, )
+//
+//
+//
+//    }
+
 }

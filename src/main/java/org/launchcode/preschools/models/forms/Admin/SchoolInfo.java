@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class SchoolInfo {
     @Id
     @GeneratedValue
-    @Column(name="schoolInfo_FK") //for one to one ratio table readability
+    @Column(name="schoolInfo_FK") //for one to one table readability
     int id;
 
     @NotNull
@@ -22,6 +22,9 @@ public class SchoolInfo {
 
     @NotNull
     Double tuition;
+
+//    @OneToOne(mappedBy = "schoolInfo")
+//    private Address address;             // do I need this for one to one ???????
 
     //constructor
     public SchoolInfo(Integer ratio, String pottyTrained, Integer hours, Double tuition)
