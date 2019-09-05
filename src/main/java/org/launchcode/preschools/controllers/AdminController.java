@@ -122,12 +122,12 @@ public class AdminController {
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     public String processDeleteSchool(@RequestParam int[] addressIds)
     {
-        for (int addressId : addressIds) {
+        for (int addressId : addressIds)
+        {
             Address address = addressDao.findById(addressId).orElse(null);
-
             addressDao.delete(address); //check to make sure deletes corresponding row in School Info
         }
-        return "redirect:/admin/index";
+        return "redirect:/admin";
     }
 
 }
