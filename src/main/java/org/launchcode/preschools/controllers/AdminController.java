@@ -65,10 +65,10 @@ public class AdminController {
     @RequestMapping(value = "schoolInfo", method = RequestMethod.GET)
     public String displaySchoolInfoForm(Model model)
     {
-        model.addAttribute("title", "Add School Information");
-        /*TODO: pull the school name and add to title, possible error enter address
-        without entering info, leaving incorrect mapping */
+        Address address = addressDao.findById(newAddressFK).orElse(null);
+
         model.addAttribute("newAddressFK", newAddressFK);
+        model.addAttribute("title", "Enter " + address.getName() + "'s Information" );
         model.addAttribute(new SchoolInfo());
         return "admin/schoolInfo";
     }
@@ -81,9 +81,8 @@ public class AdminController {
             model.addAttribute("title", "Add School Information");
             return "admin/schoolInfo";
         }
-        int newAddressFKInt = Integer.valueOf(newAddressFK);
 
-        Optional<Address>newAddress = addressDao.findById(newAddressFK);
+        Optional<Address> newAddress = addressDao.findById(newAddressFK);
 
         Address presentAddress;
         if (newAddress.isPresent()) {
@@ -103,6 +102,7 @@ public class AdminController {
     public String displaySchool(Model model, @PathVariable int addressId)
     {
         Address address = addressDao.findById(addressId).orElse(null);
+
         //get schoolInfo from FK,
         //SchoolInfo schoolInfo = schoolInfoDoa.findById
         //model.addAttribute("schoolInfo", schoolInfo)
@@ -116,7 +116,7 @@ public class AdminController {
     {
         model.addAttribute("addresses", addressDao.findAll());
         model.addAttribute("title", "Delete Preschool");
-        return "redirect";
+        return "/admin/delete";
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.POST)
