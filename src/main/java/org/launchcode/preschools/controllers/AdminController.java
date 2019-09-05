@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -23,6 +25,7 @@ public class AdminController {
     private SchoolInfoDao schoolInfoDao;
 
     public Double pricePerHour;
+    public Integer newAddressFK;
 
     @RequestMapping(value = "")
     public String index(Model model)
@@ -49,8 +52,13 @@ public class AdminController {
             model.addAttribute("title", "Add New Preschool");
             return "admin/address";
         }
+
         addressDao.save(newAddress);
-        return "redirect:/admin/schoolInfo"; //after address form is filled out, redirect to info form
+
+        newAddressFK = newAddress.getId();
+        model.addAttribute("newAddressFK", newAddressFK); //pass FK to view (hidden)
+
+        return "redirect:/admin/schoolInfo";
 
     }
 
@@ -60,19 +68,34 @@ public class AdminController {
         model.addAttribute("title", "Add School Information");
         /*TODO: pull the school name and add to title, possible error enter address
         without entering info, leaving incorrect mapping */
+        model.addAttribute("newAddressFK", newAddressFK);
         model.addAttribute(new SchoolInfo());
         return "admin/schoolInfo";
     }
 
     @RequestMapping(value = "schoolInfo", method = RequestMethod.POST)
-    public String processSchoolInfoForm(@ModelAttribute @Valid SchoolInfo newSchoolInfo, Errors errors,
-                                        Model model)
+    public String processSchoolInfoForm(@ModelAttribute @Valid SchoolInfo newSchoolInfo, @RequestParam("newAddressFK") Integer newAddressFK,
+                                        Errors errors, Model model)
     {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add School Information");
             return "admin/schoolInfo";
         }
+        int newAddressFKInt = Integer.valueOf(newAddressFK);
+
+        Optional<Address>newAddress = addressDao.findById(newAddressFK);
+
+        Address presentAddress;
+        if (newAddress.isPresent()) {
+            presentAddress = newAddress.get();
+        } else {
+            presentAddress = new Address();
+        }
+        newSchoolInfo.setAddress(presentAddress);
         schoolInfoDao.save(newSchoolInfo);
+
+
+
         return "redirect:/admin"; //display list of all schools...or just school entered...?
     }
 
@@ -88,12 +111,23 @@ public class AdminController {
         return "admin/displaySchool";
     }
 
-    @RequestMapping(value = "deleteSchool", method = RequestMethod.GET)
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
     public String displayDeleteSchool(Model model)
     {
         model.addAttribute("addresses", addressDao.findAll());
         model.addAttribute("title", "Delete Preschool");
-        return "redirect:/";
+        return "redirect";
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public String processDeleteSchool(@RequestParam int[] addressIds)
+    {
+        for (int addressId : addressIds) {
+            Address address = addressDao.findById(addressId).orElse(null);
+
+            addressDao.delete(address); //check to make sure deletes corresponding row in School Info
+        }
+        return "redirect:/admin/index";
     }
 
 }

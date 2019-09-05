@@ -12,6 +12,7 @@ public class Address {
 
     @Id
     @GeneratedValue
+    @Column(name="address_FK") //for one to one table readability
     private int id;
 
     @NotNull
@@ -32,10 +33,6 @@ public class Address {
     @NotNull
     String website;
 
-    //create one to one mapping for Address and SchoolInfo
-    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER) //cascade ALL: if merged, persist, refresh, or deleted one row, same applied to corresponding row on other table
-    @JoinColumn(name="schoolInfo_FK") //name column in table FK=foreign key
-    private SchoolInfo schoolInfo;
 
 
     //constructors
@@ -56,6 +53,9 @@ public class Address {
     //getters and setters
 
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getAddress1() {
         return address1;
@@ -63,14 +63,6 @@ public class Address {
 
     public void setAddress1(String address1) {
         this.address1 = address1;
-    }
-
-    public SchoolInfo getSchoolInfo() {
-        return schoolInfo;
-    }
-
-    public void setSchoolInfo(SchoolInfo schoolInfo) {
-        this.schoolInfo = schoolInfo;
     }
 
     public String getWebsite() {

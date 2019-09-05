@@ -11,10 +11,10 @@
 
     <div class="">
 
-        <div th:each="address: ${addresses}" class="checkbox col-3"  style="display:inline-block">
+        <div th:each="address : ${addresses}" class="checkbox col-3"  style="display:inline-block">
             <input type="checkbox" name="addressId" th:value="${address.id}" th:id="${address.id}"/>
             <label th:for="${address.id}" th:text="${address.name}"></label>
-            <br />
+            <br/>
         </div>
     </div>
     <br/>

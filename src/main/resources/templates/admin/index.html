@@ -15,7 +15,9 @@
             <table class="table table-striped">
                 <tr>  <!--TODO not displaying as a link...-->
                     <th th:text="${address.name}"></th>
-                        <td th:text="${address.address1} + ', ' + ${address.city} + ', ' + ${address.state} + ' ' + ${address.zipCode}"></td>
+                        <div class="col-5">
+                            <td th:text="${address.address1} + ', ' + ${address.city} + ', ' + ${address.state} + ' ' + ${address.zipCode}"></td>
+                        </div>
                 </tr>
             </table>
     </div>

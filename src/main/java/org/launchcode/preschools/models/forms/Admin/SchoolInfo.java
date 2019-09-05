@@ -6,9 +6,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class SchoolInfo {
+
     @Id
     @GeneratedValue
-    @Column(name="schoolInfo_FK") //for one to one table readability
     int id;
 
     @NotNull
@@ -23,8 +23,11 @@ public class SchoolInfo {
     @NotNull
     Double tuition;
 
-//    @OneToOne(mappedBy = "schoolInfo")
-//    private Address address;             // do I need this for one to one ???????
+    //create one to one mapping for Address and SchoolInfo
+    @OneToOne(cascade = CascadeType.ALL) //cascade ALL: if merged, persist, refresh, or deleted one row, same applied to corresponding row on other table
+    @JoinColumn(name="address_FK")
+    private Address address;
+
 
     //constructor
     public SchoolInfo(Integer ratio, String pottyTrained, Integer hours, Double tuition)
@@ -41,6 +44,14 @@ public class SchoolInfo {
     //getters and setters
     public int getId() {
         return id;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public void setId(int id) {

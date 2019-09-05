@@ -4,6 +4,9 @@
 
 <body class="container">
     <h1 th:text="${title}"></h1>
+    <div>
+        <h1 th:text="${newAddressFK}"></h1>
+    </div>
 
 <form method="post" style="max-width:500px;" th:object="${schoolInfo}">
     <p><div class="form-group">
@@ -42,9 +45,11 @@
         <span th:errors="*{tuition}" class="error"></span>
     </div><br/>
 
-    <input type="submit" value="Submit School Information"><br>
-</form>
+    <input type="hidden" th:value="${newAddressFK}" name="newAddressFK"/>
+    <input type="submit" value="Submit School Information"/><br>
 
+
+</form>
 
 </body>
 </html>
