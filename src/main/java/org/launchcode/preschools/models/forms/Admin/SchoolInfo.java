@@ -24,7 +24,7 @@ public class SchoolInfo {
     Double tuition;
 
     //create one to one mapping for Address and SchoolInfo
-    @OneToOne(cascade = CascadeType.ALL) //cascade ALL: if merged, persist, refresh, or deleted one row, same applied to corresponding row on other table
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) //cascade ALL: if merged, persist, refresh, or deleted one row, same applied to corresponding row on other table
     @JoinColumn(name="address_FK")
     private Address address;
 
