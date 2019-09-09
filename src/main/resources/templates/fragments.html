@@ -36,10 +36,47 @@
                 <a class="nav-link" href="/admin/delete">Delete Preschool</a>
             </li>
         </ul>
+        <div class="inline my-lg-0">
+            <ul>
+                <li class="navbar-brand">
+                    <a class="nav-link" href="/user">User View</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav><br/>
 </nav>
 <body>
+
+<nav th:fragment="userNav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/user">Local Preschools</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">User Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/list">View All Preschools</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/search">Search Preschools</a>
+            </li>
+        </ul>
+        <div class="inline my-lg-0">
+            <ul>
+            <li class="navbar-brand">
+                <a class="nav-link" href="/admin">Admin Login</a>
+            </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</nav>
 
 
 </body>

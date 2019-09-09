@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<nav th:replace="fragments :: userNav"></nav>
+
+<div class="col-sm-4 text-warning">
+    <h1>Schools</h1>
+</div>
+
+<div class="card card-body bg-light">
+    <div th:each="address : ${addresses}">
+        <p th:unless="${addresses}" and ${addresses.size()}>No Preschools Listed</p>
+        <table class="table table-striped">
+            <tr>  <!--TODO not displaying as a link...-->
+                <a th:href="'/user/view/' + ${address.id}" th:text="${address.name}"></a>
+                <div class="col-5">
+                    <td th:text="${address.address1} + ', ' + ${address.city} + ', ' + ${address.state} + ' ' + ${address.zipCode}"></td>
+                </div>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

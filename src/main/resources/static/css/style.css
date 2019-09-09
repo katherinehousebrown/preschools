@@ -8,7 +8,7 @@ body, html {
 
 .bg {
   /* The image used */
-  background-image: src="@{images/coloredPencils.JPG}" ;
+  background-image: src="@{/images/coloredPencils.JPG}" ;
 
   /* Full height */
   height: 100%;

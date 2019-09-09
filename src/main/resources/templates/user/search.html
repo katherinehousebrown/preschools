@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container jumbotron">
+<nav th:replace="fragments :: userNav"></nav>
+
+<!-- Search form -->
+<form class="form-inline md-form form-sm active-cyan-2 mt-2">
+    <input class="form-control form-control-sm mr-3 w-75" type="text"
+           placeholder="Search by School Name" th:value="*{nameSearch}"
+           aria-label="Search">
+    <i class="fas fa-search" aria-hidden="true"></i>
+</form>
+</body>
+</html>

@@ -14,7 +14,7 @@
         <p th:unless="${addresses}" and ${addresses.size()}>No Preschools Listed</p>
             <table class="table table-striped">
                 <tr>  <!--TODO not displaying as a link...-->
-                    <th th:text="${address.name}"></th>
+                    <a th:href="'/admin/view/' + ${address.id}" th:text="${address.name}"></a>
                         <div class="col-5">
                             <td th:text="${address.address1} + ', ' + ${address.city} + ', ' + ${address.state} + ' ' + ${address.zipCode}"></td>
                         </div>

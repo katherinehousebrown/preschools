@@ -52,11 +52,6 @@ public class Address {
 
     //getters and setters
 
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getAddress1() {
         return address1;
     }

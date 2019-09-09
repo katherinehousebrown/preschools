@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container" th:object="${address}">
+
+<nav th:replace="fragments :: userNav"></nav>
+
+<div class="jumbotron">
+    <h1 th:text="${title}"></h1>
+
+    <div class="container">
+        <span th:text="${address.address1}"></span><br/>
+        <span th:text="${address.city} + ', ' + ${address.state} + ' ' + ${address.zipCode}"></span><br/>
+        <a th:href="${address.website}" th:text="${address.website}"></a><br/><br/>
+        <span th:text="'Does the child need to be potty trained? '"></span><br/>
+        <span th:text="'The Teacher:Student ratio is 1:'"></span><br/>
+        <span th:text="'The cost per hour is $' "></span><br/>
+
+    </div>
+</div>
+
+</body>
+</html>

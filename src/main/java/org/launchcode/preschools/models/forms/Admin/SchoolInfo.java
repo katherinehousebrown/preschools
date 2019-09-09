@@ -25,8 +25,8 @@ public class SchoolInfo {
 
     //create one to one mapping for Address and SchoolInfo
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) //cascade ALL: if merged, persist, refresh, or deleted one row, same applied to corresponding row on other table
-    @JoinColumn(name="address_FK")
-    private Address address;
+    @JoinColumn(name="address_FK")           //EAGER loads both sets of data together for each instance
+    public Address address;
 
 
     //constructor
@@ -52,10 +52,6 @@ public class SchoolInfo {
 
     public void setAddress(Address address) {
         this.address = address;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Integer getRatio() {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -98,17 +99,16 @@ public class AdminController {
         return "redirect:/admin"; //display list of all schools...or just school entered...?
     }
 
-    @RequestMapping(value = "displaySchool/{addressId}", method = RequestMethod.GET)
+    @RequestMapping(value = "view/{addressId}", method = RequestMethod.GET)
     public String displaySchool(Model model, @PathVariable int addressId)
     {
         Address address = addressDao.findById(addressId).orElse(null);
+        //calculate tuition / hours * 4
 
-        //get schoolInfo from FK,
-        //SchoolInfo schoolInfo = schoolInfoDoa.findById
-        //model.addAttribute("schoolInfo", schoolInfo)
         model.addAttribute("address", address);
         model.addAttribute("title", address.getName());
-        return "admin/displaySchool";
+
+        return "admin/view";
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.GET)
@@ -124,8 +124,8 @@ public class AdminController {
     {
         for (int addressId : addressIds)
         {
-            Address address = addressDao.findById(addressId).orElse(null);
-            addressDao.delete(address); //check to make sure deletes corresponding row in School Info
+            addressDao.deleteById(addressId);
+            //find SchoolInfo by FK?
         }
         return "redirect:/admin";
     }
