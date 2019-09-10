@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container jumbotron">
+
+<body class="container jumbotron" th:style="'background: url('+@{images/crayons.jpg} +');'">
+
 <nav th:replace="fragments :: userNav"></nav>
 
 <div class="col-sm-3 text-warning top-padding">
     <h1>Schools</h1>
 </div>
 
-<div class="card card-body bg-light">
+<div class="card card-body bg-white">
     <div th:each="address : ${addresses}">
         <p th:unless="${addresses}" and ${addresses.size()}>No Preschools Listed</p>
         <table class="table table-striped">
-            <tr>  <!--TODO not displaying as a link...-->
+            <tr>
                 <a th:href="'/user/view/' + ${address.id}" th:text="${address.name}"></a>
                 <div class="col-5">
                     <td th:text="${address.address1} + ', ' + ${address.city} + ', ' + ${address.state} + ' ' + ${address.zipCode}"></td>

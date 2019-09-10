@@ -1,4 +1,9 @@
 
+.background-picture{
+ background-image: url('../static/images/coloredPencils.jpg');
+ background-size: cover;
+ background-repeat: no-repeat;
+}
 
 body{
   padding: 5rem, 2rem, 5rem, 2rem;
