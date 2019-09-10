@@ -1,14 +1,27 @@
+
+
 body{
-    padding-top:10cm
+  padding: 5rem, 2rem, 5rem, 2rem;
+  background-color: ;
+}
+.top-padding{
+    padding-top: 2rem;
 }
 
-body, html {
-  height: 100%;
+.single-view{
+    padding-top: 4rem;
+    padding-left: 2rem;
 }
 
-.bg {
+.list-view{
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+.big-banner {
   /* The image used */
-  background-image: src="@{/images/coloredPencils.JPG}" ;
+  background-image: src= url('../static/images/coloredPencils.jpg');
+ /* "@{/static/images/coloredPencils.JPG}"*/
 
   /* Full height */
   height: 100%;
@@ -17,4 +30,4 @@ body, html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-} */
+}

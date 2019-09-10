@@ -125,7 +125,8 @@ public class AdminController {
         for (int addressId : addressIds)
         {
             addressDao.deleteById(addressId);
-            //find SchoolInfo by FK?
+            //schoolInfoDao.deleteById(addressId);
+            //TODO: find SchoolInfo by FK
         }
         return "redirect:/admin";
     }

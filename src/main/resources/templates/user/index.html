@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container jumbotron">
+<body class = "big-banner jumbotron" th:style="'background: url('+@{images/coloredPencils.jpg} +');'" />
 <nav th:replace="fragments :: userNav"></nav>
 
-<div class="jumbotron text-warning bg">
-    <div class="bg">
-        <h1>Find the preschool that fits your family's needs.</h1>
+<div class="big-banner">
+
+        <div class="jumbotron text-warning">
+            <div>
+            <h1><center>Find the preschool that fits your family's needs.</center></h1>
+              <!--  <img class="big-banner"  th:src="@{images/coloredPencils.jpg}"> -->
+        </div>
     </div>
 </div>
 

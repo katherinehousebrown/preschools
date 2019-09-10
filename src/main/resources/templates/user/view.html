@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container" th:object="${address}">
+<body class="container jumbotron" th:object="${address}">
 
 <nav th:replace="fragments :: userNav"></nav>
 
-<div class="jumbotron">
+<div class="single-view" style="background-color:info;">
     <h1 th:text="${title}"></h1>
 
     <div class="container">
