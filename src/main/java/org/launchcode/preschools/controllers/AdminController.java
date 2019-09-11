@@ -1,8 +1,11 @@
 package org.launchcode.preschools.controllers;
 
+import org.hibernate.validator.constraints.pl.REGON;
+import org.launchcode.preschools.models.data.AdminDao;
 import org.launchcode.preschools.models.data.SchoolInfoDao;
 import org.launchcode.preschools.models.forms.Admin.Address;
 import org.launchcode.preschools.models.data.AddressDao;
+import org.launchcode.preschools.models.forms.Admin.Admin;
 import org.launchcode.preschools.models.forms.Admin.SchoolInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +15,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Optional;
+
+import static com.sun.tools.doclint.Entity.and;
 
 @Controller
 @RequestMapping("/admin")
@@ -24,6 +30,9 @@ public class AdminController {
 
     @Autowired
     private SchoolInfoDao schoolInfoDao;
+
+    @Autowired
+    private AdminDao adminDao;
 
     public Double pricePerHour;
     public Integer newAddressFK;
@@ -105,7 +114,10 @@ public class AdminController {
         Address address = addressDao.findById(addressId).orElse(null);
         SchoolInfo schoolInfo = schoolInfoDao.findByAddressId(addressId);
 
-        Double perHour = (schoolInfo.getTuition())*4/(schoolInfo.getHours());
+        Double perHourNum = (schoolInfo.getTuition())*4/(schoolInfo.getHours());
+
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        String perHour = formatter.format(perHourNum);
 
         model.addAttribute("perHour", perHour);
         model.addAttribute("address", address);
@@ -131,6 +143,39 @@ public class AdminController {
             schoolInfoDao.delete(schoolInfoDao.findByAddressId(addressId));
         }
         return "redirect:/admin";
+    }
+
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String displayAdminLogin(Model model)
+    {
+        model.addAttribute("title", "Admin Login");
+        model.addAttribute(new Admin());
+        return "/admin/login";
+    }
+
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public String processAdminLogin(Model model, @ModelAttribute @Valid Admin admin)
+    {
+        String username = admin.getUserName();
+        String password = admin.getPassword();
+
+        model.addAttribute("title", "Admin");
+
+        for (Admin admins : adminDao.findAll()) {
+            String oneUsername = admins.getUserName();
+            String onePassword = admins.getPassword();
+            if (username.toLowerCase().equals(oneUsername.toLowerCase())){
+                if (password.toLowerCase().equals(onePassword.toLowerCase())){
+                    return "redirect:/admin/index";
+                }else{
+                    model.addAttribute("title", "INCORRECT USERNAME and/or PASSWORD, please try again");
+                    return "/admin/login";
+                }
+
+            }
+        }
+
+        return "redirect:/";
     }
 
 }

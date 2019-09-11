@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="jumbotron list-view">
+
+<nav th:replace="fragments :: adminNav"></nav>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+
+        <form method="post" th:object="${admin}">
+            <input class="fadeIn second" th:field="*{userName}" placeholder="admin username"/>
+            <input class="fadeIn third" th:field="*{password}" placeholder="password"/>
+            <input type="submit" class="fadeIn fourth" value="Log In"/>
+        </form>
+<!--
+        <div id="formFooter">
+            <a class="underlineHover" href="#">Forgot Password?</a>
+        </div>
+-->
+    </div>
+</div>
+
+
+</body>
+</html>
