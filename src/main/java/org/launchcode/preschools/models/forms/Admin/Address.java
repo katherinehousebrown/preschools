@@ -12,7 +12,7 @@ public class Address {
 
     @Id
     @GeneratedValue
-    @Column(name="address_FK") //for one to one table readability
+    @Column
     private int id;
 
     @NotNull
@@ -32,7 +32,6 @@ public class Address {
 
     @NotNull
     String website;
-
 
 
     //constructors

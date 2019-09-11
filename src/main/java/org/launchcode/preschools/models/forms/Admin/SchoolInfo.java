@@ -25,7 +25,7 @@ public class SchoolInfo {
 
     //create one to one mapping for Address and SchoolInfo
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) //cascade ALL: if merged, persist, refresh, or deleted one row, same applied to corresponding row on other table
-    @JoinColumn(name="address_FK")           //EAGER loads both sets of data together for each instance
+    @JoinColumn(name="address_id")           //EAGER loads both sets of data together for each instance
     public Address address;
 
 

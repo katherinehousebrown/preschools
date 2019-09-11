@@ -3,13 +3,14 @@ package org.launchcode.preschools.controllers;
 import org.launchcode.preschools.models.data.AddressDao;
 import org.launchcode.preschools.models.data.SchoolInfoDao;
 import org.launchcode.preschools.models.forms.Admin.Address;
+import org.launchcode.preschools.models.forms.Admin.SchoolInfo;
+import org.launchcode.preschools.models.forms.User.UserSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/user")
@@ -21,10 +22,12 @@ public class UserController {
     @Autowired
     private SchoolInfoDao schoolInfoDao;
 
-    @RequestMapping(value = "")
+    @RequestMapping(value = "user")
     public String index(Model model)
     {
-        return "/user/index";
+        model.addAttribute("title", "Preschools");
+
+        return "index";
     }
 
     @RequestMapping(value = "list")
@@ -33,7 +36,7 @@ public class UserController {
         model.addAttribute("title","Admin Page");
         model.addAttribute("addresses", addressDao.findAll());
 
-        return "/user/list";
+        return "list";
     }
 
     @RequestMapping(value = "view/{addressId}", method = RequestMethod.GET)
@@ -42,17 +45,28 @@ public class UserController {
         Address address = addressDao.findById(addressId).orElse(null);
         //calculate tuition / hours * 4
 
+        SchoolInfo schoolInfo = schoolInfoDao.findByAddressId(addressId);
         model.addAttribute("address", address);
+        model.addAttribute("schoolInfo", schoolInfo);
         model.addAttribute("title", address.getName());
 
-        return "/user/view";
+        return "view";
     }
 
     //search by name, location (google map API), if potty trained, tuition less than x amount
-    @RequestMapping(value = "search", method = RequestMethod.GET)
-    public String search(Model model)
+    @RequestMapping(value = "/user/search", method = RequestMethod.GET)
+    public String displaySearch(Model model)
     {
-        return "/user/search";
+        model.addAttribute("title","Search");
+       // model.addAttribute(new UserSearch());
+        return "search";
+    }
+
+    @RequestMapping(value = "search", method = RequestMethod.POST)
+    public String search(Model model, @ModelAttribute @Valid UserSearch userSearch)
+    {
+        model.addAttribute("userSearch",userSearch);
+        return "redirect:display";
     }
 
 }

@@ -7,6 +7,7 @@ public class UserSearch {
     String searchForm;
 
     //constructor
+
     public UserSearch(String searchForm)
     {
         this.searchForm = searchForm;

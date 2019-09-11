@@ -91,9 +91,9 @@ public class AdminController {
         } else {
             presentAddress = new Address();
         }
+
         newSchoolInfo.setAddress(presentAddress);
         schoolInfoDao.save(newSchoolInfo);
-
 
 
         return "redirect:/admin"; //display list of all schools...or just school entered...?
@@ -103,9 +103,11 @@ public class AdminController {
     public String displaySchool(Model model, @PathVariable int addressId)
     {
         Address address = addressDao.findById(addressId).orElse(null);
+        SchoolInfo schoolInfo = schoolInfoDao.findByAddressId(addressId);
         //calculate tuition / hours * 4
 
         model.addAttribute("address", address);
+        model.addAttribute("schoolInfo", schoolInfo);
         model.addAttribute("title", address.getName());
 
         return "admin/view";
@@ -124,9 +126,7 @@ public class AdminController {
     {
         for (int addressId : addressIds)
         {
-            addressDao.deleteById(addressId);
-            //schoolInfoDao.deleteById(addressId);
-            //TODO: find SchoolInfo by FK
+            schoolInfoDao.delete(schoolInfoDao.findByAddressId(addressId));
         }
         return "redirect:/admin";
     }

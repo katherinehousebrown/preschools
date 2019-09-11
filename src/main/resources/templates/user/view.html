@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container jumbotron" th:object="${address}">
+<div th:object="${schoolInfo}">
 
 <nav th:replace="fragments :: userNav"></nav>
 
@@ -12,11 +13,12 @@
         <span th:text="${address.address1}"></span><br/>
         <span th:text="${address.city} + ', ' + ${address.state} + ' ' + ${address.zipCode}"></span><br/>
         <a th:href="${address.website}" th:text="${address.website}"></a><br/><br/>
-        <span th:text="'Does the child need to be potty trained? '"></span><br/>
-        <span th:text="'The Teacher:Student ratio is 1:'"></span><br/>
-        <span th:text="'The cost per hour is $' "></span><br/>
+        <span th:text="'Does the child need to be potty trained? ' + ${schoolInfo.pottyTrained}"></span><br/>
+        <span th:text="'The Teacher:Student ratio is 1:' + ${schoolInfo.ratio}"></span><br/>
+        <span th:text="'The cost per hour is $' + ${schoolInfo.tuition}"></span><br/>
 
     </div>
+</div>
 </div>
 
 </body>
