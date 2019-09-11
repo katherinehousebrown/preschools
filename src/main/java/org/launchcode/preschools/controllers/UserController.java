@@ -4,13 +4,14 @@ import org.launchcode.preschools.models.data.AddressDao;
 import org.launchcode.preschools.models.data.SchoolInfoDao;
 import org.launchcode.preschools.models.forms.Admin.Address;
 import org.launchcode.preschools.models.forms.Admin.SchoolInfo;
-import org.launchcode.preschools.models.forms.Admin.UserSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
 import java.text.NumberFormat;
 
 @Controller
@@ -34,7 +35,7 @@ public class UserController {
     @RequestMapping(value = "list")
     public String list(Model model)
     {
-        model.addAttribute("title","Admin Page");
+        model.addAttribute("title","All Preschools");
         model.addAttribute("addresses", addressDao.findAll());
 
         return "user/list";
@@ -64,19 +65,28 @@ public class UserController {
     public String displaySearch(Model model)
     {
         model.addAttribute("title","Search");
-        //WHy won't it accept an empty new object? new UserSearch()
-        model.addAttribute(new UserSearch("searchResults"));
-
+        //model.addAttribute(new UserSearch());
         return "/user/search";
     }
 
     @RequestMapping(value = "search", method = RequestMethod.POST)
-    public String search(Model model, @ModelAttribute @Valid UserSearch userSearch)
+    public String search(Model model, @RequestParam String searchName)
     {
+        int i = 1;
+        for(Address address : addressDao.findAll()){
+            if(address.getName().equals(searchName)){
+                Integer addressId = address.getId();
+                model.addAttribute("address", address);
+                model.addAttribute("schoolInfo", schoolInfoDao.findByAddressId(addressId));
+                return "redirect:/user/view";
+            }else{
+                model.addAttribute("error", "There are no schools by that name.");
+                return "/user/search";
+            }
 
+        }
 
-        model.addAttribute("userSearch",userSearch);
-        return "redirect:/user/display";
+        return "redirect:/";
     }
 
 }

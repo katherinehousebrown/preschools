@@ -1,19 +1,20 @@
-package org.launchcode.preschools.models.forms.Admin;
+package org.launchcode.preschools.models.forms.User;
 
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-
+@Entity
 public class UserSearch {
 
     @Id
     @GeneratedValue
-    int id;
+    private int id;
 
     @NotNull
-    String searchResults;
+    private String searchResults;
 
     //constructor
     public UserSearch(String searchResults)
@@ -21,8 +22,9 @@ public class UserSearch {
         this.searchResults = searchResults;
     }
 
-    //getters and setters
+    public UserSearch(){}
 
+    //getters and setters
     public int getId() {
         return id;
     }

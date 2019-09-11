@@ -4,13 +4,16 @@
 <body class="container">
 <nav th:replace="fragments :: userNav"></nav>
 
-<form method="post" style="max-width:500px;" th:object="${userSearch}">
+<form method="post" style="max-width:500px;">
 
+    <div class="text-danger">
+        <div th:text="${error}"></div>
+    </div>
     <div class="form-group">
-        <label th:for="searchForm">Name of Preschool</label>
-        <input class="form-control" th:field="*{searchForm}" placeholder="School Name" />
+        <input type="text" th:value="${searchName}" name="searchName"/>
         <input type="submit" value="Search by Name"/>
     </div>
+
 </form>
 
 </body>

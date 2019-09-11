@@ -3,8 +3,7 @@ package org.launchcode.preschools.models.forms.Admin;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.math.BigInteger;
-import java.security.MessageDigest;
+
 
 @Entity
 public class Admin {

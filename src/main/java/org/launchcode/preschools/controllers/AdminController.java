@@ -1,10 +1,9 @@
 package org.launchcode.preschools.controllers;
 
-import org.hibernate.validator.constraints.pl.REGON;
+import org.launchcode.preschools.models.data.AddressDao;
 import org.launchcode.preschools.models.data.AdminDao;
 import org.launchcode.preschools.models.data.SchoolInfoDao;
 import org.launchcode.preschools.models.forms.Admin.Address;
-import org.launchcode.preschools.models.data.AddressDao;
 import org.launchcode.preschools.models.forms.Admin.Admin;
 import org.launchcode.preschools.models.forms.Admin.SchoolInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Optional;
-
-import static com.sun.tools.doclint.Entity.and;
 
 @Controller
 @RequestMapping("/admin")
@@ -102,8 +97,17 @@ public class AdminController {
         }
 
         newSchoolInfo.setAddress(presentAddress);
+
+        //calculate and save cost per hour
+        Double perHourNum = (newSchoolInfo.getTuition())*4/(newSchoolInfo.getHours());
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        String perHour = formatter.format(perHourNum);
+        newSchoolInfo.setPerHour(perHour);
+
         schoolInfoDao.save(newSchoolInfo);
 
+        //TODO: add perHour to the SchoolInfo database, tried delete and save again
+      //  schoolInfoDao.save(newSchoolInfo);
 
         return "redirect:/admin"; //display list of all schools...or just school entered...?
     }
