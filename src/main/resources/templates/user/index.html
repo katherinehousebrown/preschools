@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body th:style="'background: url('+@{images/crayons.jpg} +');'" />
+<div class="backdrop">
+    <body th:style="'background: url('+@{images/crayons.jpg} +');'"/>
+
 <nav th:replace="fragments :: userNav"></nav>
 
 <div class="big-banner">
@@ -16,4 +18,5 @@
 
 
 </body>
+</div>
 </html>

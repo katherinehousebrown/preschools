@@ -12,10 +12,10 @@
     <div class="container">
         <span th:text="${address.address1}"></span><br/>
         <span th:text="${address.city} + ', ' + ${address.state} + ' ' + ${address.zipCode}"></span><br/>
-        <a th:href="${address.website}" th:text="${address.website}"></a><br/><br/>
+        <a th:href="'http://' + ${address.website}" th:text="${address.website}"></a><br/><br/>
         <span th:text="'Does the child need to be potty trained? ' + ${schoolInfo.pottyTrained}"></span><br/>
         <span th:text="'The Teacher:Student ratio is 1:'+ ${schoolInfo.ratio}"></span><br/>
-        <span th:text="'The cost per hour is $' + ${schoolInfo.tuition} "></span><br/>
+        <span th:text="'The cost per hour is $' + ${perHour} "></span><br/>
 
     </div>
 </div>

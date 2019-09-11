@@ -22,12 +22,12 @@ public class UserController {
     @Autowired
     private SchoolInfoDao schoolInfoDao;
 
-    @RequestMapping(value = "user")
+    @RequestMapping(value = "")
     public String index(Model model)
     {
         model.addAttribute("title", "Preschools");
 
-        return "index";
+        return "user/index";
     }
 
     @RequestMapping(value = "list")
@@ -36,37 +36,39 @@ public class UserController {
         model.addAttribute("title","Admin Page");
         model.addAttribute("addresses", addressDao.findAll());
 
-        return "list";
+        return "user/list";
     }
 
     @RequestMapping(value = "view/{addressId}", method = RequestMethod.GET)
     public String displaySchool(Model model, @PathVariable int addressId)
     {
         Address address = addressDao.findById(addressId).orElse(null);
-        //calculate tuition / hours * 4
-
         SchoolInfo schoolInfo = schoolInfoDao.findByAddressId(addressId);
+
+        Double perHour = (schoolInfo.getTuition())*4/(schoolInfo.getHours());
+
+        model.addAttribute("perHour", perHour);
         model.addAttribute("address", address);
         model.addAttribute("schoolInfo", schoolInfo);
         model.addAttribute("title", address.getName());
 
-        return "view";
+        return "/user/view";
     }
 
     //search by name, location (google map API), if potty trained, tuition less than x amount
-    @RequestMapping(value = "/user/search", method = RequestMethod.GET)
+    @RequestMapping(value = "search", method = RequestMethod.GET)
     public String displaySearch(Model model)
     {
         model.addAttribute("title","Search");
        // model.addAttribute(new UserSearch());
-        return "search";
+        return "/user/search";
     }
 
     @RequestMapping(value = "search", method = RequestMethod.POST)
     public String search(Model model, @ModelAttribute @Valid UserSearch userSearch)
     {
         model.addAttribute("userSearch",userSearch);
-        return "redirect:display";
+        return "redirect:/user/display";
     }
 
 }

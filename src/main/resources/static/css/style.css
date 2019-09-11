@@ -13,6 +13,13 @@ body{
     padding-top: 2rem;
 }
 
+.backdrop{
+    width= 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .single-view{
     padding-top: 4rem;
     padding-left: 2rem;

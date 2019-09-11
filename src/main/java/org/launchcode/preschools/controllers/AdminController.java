@@ -104,8 +104,10 @@ public class AdminController {
     {
         Address address = addressDao.findById(addressId).orElse(null);
         SchoolInfo schoolInfo = schoolInfoDao.findByAddressId(addressId);
-        //calculate tuition / hours * 4
 
+        Double perHour = (schoolInfo.getTuition())*4/(schoolInfo.getHours());
+
+        model.addAttribute("perHour", perHour);
         model.addAttribute("address", address);
         model.addAttribute("schoolInfo", schoolInfo);
         model.addAttribute("title", address.getName());
