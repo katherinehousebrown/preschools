@@ -7,12 +7,19 @@
 
 <div class="wrapper fadeInDown">
     <div id="formContent">
+        <div class="text-warning">
+            <h1 th:text="${title}"></h1>
+        </div>
 
         <form method="post" th:object="${admin}">
             <input class="fadeIn second" th:field="*{userName}" placeholder="admin username"/>
             <input class="fadeIn third" th:field="*{password}" placeholder="password"/>
             <input type="submit" class="fadeIn fourth" value="Log In"/>
         </form>
+
+        <div class="text-danger">
+            <div th:text="${error}"></div>
+        </div>
 <!--
         <div id="formFooter">
             <a class="underlineHover" href="#">Forgot Password?</a>

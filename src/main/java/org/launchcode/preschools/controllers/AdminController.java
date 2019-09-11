@@ -159,22 +159,19 @@ public class AdminController {
         String username = admin.getUserName();
         String password = admin.getPassword();
 
-        model.addAttribute("title", "Admin");
+        model.addAttribute("title", "Admin Login");
 
         for (Admin admins : adminDao.findAll()) {
             String oneUsername = admins.getUserName();
             String onePassword = admins.getPassword();
-            if (username.toLowerCase().equals(oneUsername.toLowerCase())){
-                if (password.toLowerCase().equals(onePassword.toLowerCase())){
-                    return "redirect:/admin/index";
-                }else{
-                    model.addAttribute("title", "INCORRECT USERNAME and/or PASSWORD, please try again");
-                    return "/admin/login";
+            if ((username.toLowerCase().equals(oneUsername.toLowerCase())) & (password.toLowerCase().equals(onePassword.toLowerCase()))){
+                return "redirect:/admin";
+            }else{
+                model.addAttribute("error", "INCORRECT USERNAME and/or PASSWORD, please try again");
+                model.addAttribute("title", "Admin Login");
+                return "/admin/login";
                 }
-
             }
-        }
-
         return "redirect:/";
     }
 
