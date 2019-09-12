@@ -59,25 +59,45 @@ public class UserController {
         return "/user/view";
     }
 
-    //search by name, location (google map API), if potty trained, tuition less than x amount
-    @RequestMapping(value = "search", method = RequestMethod.GET)
-    public String displaySearch(Model model)
-    {
-        model.addAttribute("title","Search");
-        //model.addAttribute(new UserSearch());
-        return "/user/search";
+    @RequestMapping(value="/search/searchMethod", method = RequestMethod.GET)
+    public String displaySearchMethod(Model model){
+        model.addAttribute("title", "How would you like to search?");
+        return "/user/search/searchMethod";
     }
 
-    @RequestMapping(value = "search", method = RequestMethod.POST)
+    @RequestMapping(value = "search/searchMethod", method = RequestMethod.POST)
+    public String processSearchMethod(Model model, @RequestParam String searchChoice){
+        if(searchChoice.equals("name")){
+            model.addAttribute("title", "Search by Name");
+            return "/user/search/name";
+        } else if (searchChoice.equals("pottyTrained")) {
+            model.addAttribute("title", "Search by Name");
+            return "/user/search/pottyTrained";
+        } else if (searchChoice.equals("tuition")){
+            model.addAttribute("title", "Search by Tuition");
+            return "/user/search/tuition";
+        }
+        return "redirect:/user/search/searchMethod";
+    }
+
+    //search by name, location (google map API), if potty trained, tuition less than x amount
+    @RequestMapping(value = "/search/name", method = RequestMethod.GET)
+    public String displaySearch(Model model)
+    {
+        model.addAttribute("title","Search by Name");
+        //model.addAttribute(new UserSearch());
+        return "/user/search/name";
+    }
+
+    @RequestMapping(value = "/search/name", method = RequestMethod.POST)
     public String search(Model model, @RequestParam String searchName)
     {
-        int i = 1;
-        for(Address address : addressDao.findAll()){
-            if(address.getName().toLowerCase().equals(searchName.toLowerCase())){
+        for(Address address : addressDao.findAll()) {
+            if (address.getName().toLowerCase().equals(searchName.toLowerCase())) {
                 Integer addressId = address.getId();
                 SchoolInfo schoolInfo = schoolInfoDao.findByAddressId(addressId);
 
-                Double perHourNum = (schoolInfo.getTuition())/(schoolInfo.getHours()*4);
+                Double perHourNum = (schoolInfo.getTuition()) / (schoolInfo.getHours() * 4);
                 NumberFormat formatter = NumberFormat.getCurrencyInstance();
                 String perHour = formatter.format(perHourNum);
 
@@ -88,7 +108,18 @@ public class UserController {
             }
         }
         model.addAttribute("error", "There are no schools by that name.");
-        return "/user/search";
+        return "/user/search/name";
     }
+
+    @RequestMapping(value = "/search/pottyTrained", method = RequestMethod.GET)
+    public String displaySearchPottyTrained(Model model)
+    {
+        model.addAttribute("title", "Search by Potty Trained");
+        return "/user/search/pottyTrained";
+    }
+
+
+
+
 
 }

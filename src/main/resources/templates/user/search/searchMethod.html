@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container jumbotron">
+<nav th:replace="fragments :: userNav"></nav>
+
+<form method="post" style="max-width:600px;">
+
+    <div class="container"></div><br/><br/>
+
+        <div class = text-warning>
+            <h1><div th:text="${title}"></div></h1>
+        </div><br/>
+    <div class="checkbox col-3" style="display:inline-block">
+        <input type="checkbox" name="name" th:value="${searchChoice}" th:id="${searchChoice}">
+        <label th:for="${searchChoice}" th:text="Name"></label></div><br/>
+    </div>
+
+    </div>
+    <br/>
+    <div class="search-button">
+        <input type="submit" class="btn btn-primary" value="Submit"/>
+    </div>
+    <br />
+</form>
+
+
+</body>
+</html>
