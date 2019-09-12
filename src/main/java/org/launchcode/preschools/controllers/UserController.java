@@ -69,13 +69,13 @@ public class UserController {
     public String processSearchMethod(Model model, @RequestParam String searchChoice){
         if(searchChoice.equals("name")){
             model.addAttribute("title", "Search by Name");
-            return "/user/search/name";
+            return "redirect:/user/search/name";
         } else if (searchChoice.equals("pottyTrained")) {
             model.addAttribute("title", "Search by Name");
-            return "/user/search/pottyTrained";
+            return "redirect:/user/search/pottyTrained";
         } else if (searchChoice.equals("tuition")){
             model.addAttribute("title", "Search by Tuition");
-            return "/user/search/tuition";
+            return "redirect:/user/search/tuition";
         }
         return "redirect:/user/search/searchMethod";
     }
