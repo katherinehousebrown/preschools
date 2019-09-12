@@ -12,6 +12,9 @@
         <label th:for="name">Name of School</label>
         <input class="form-control" th:field="*{name}" required="required" placeholder="Enter Name Here" />
         <span th:errors="*{name}" class="error"></span>
+        <div class="text-danger">
+            <div th:text="${error}"></div>
+        </div>
     </div>
     <div class="form-group">
         <label th:for="address1">Address</label>
@@ -89,8 +92,8 @@
         </div>
         <div class="form-group col-md-8">
             <label th:for="website">Website</label>
-            <input class="form-control" th:field="*{website}" required="required" placeholder="Enter Website" />
-            <span th:errors="*{website}" class="error"></span><br/><br/>
+            <input class="form-control" th:field="*{website}" placeholder="Enter Website" />
+            <br/><br/>
             <input type="submit" value="Submit School Information"/>
         </div>
 

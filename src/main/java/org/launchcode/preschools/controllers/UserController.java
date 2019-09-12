@@ -47,8 +47,7 @@ public class UserController {
         Address address = addressDao.findById(addressId).orElse(null);
         SchoolInfo schoolInfo = schoolInfoDao.findByAddressId(addressId);
 
-        Double perHourNum = (schoolInfo.getTuition())*4/(schoolInfo.getHours());
-
+        Double perHourNum = (schoolInfo.getTuition())/(schoolInfo.getHours()*4);
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         String perHour = formatter.format(perHourNum);
 
@@ -76,9 +75,16 @@ public class UserController {
         for(Address address : addressDao.findAll()){
             if(address.getName().equals(searchName)){
                 Integer addressId = address.getId();
+                SchoolInfo schoolInfo = schoolInfoDao.findByAddressId(addressId);
+
+                Double perHourNum = (schoolInfo.getTuition())/(schoolInfo.getHours()*4);
+                NumberFormat formatter = NumberFormat.getCurrencyInstance();
+                String perHour = formatter.format(perHourNum);
+
                 model.addAttribute("address", address);
-                model.addAttribute("schoolInfo", schoolInfoDao.findByAddressId(addressId));
-                return "redirect:/user/view";
+                model.addAttribute("schoolInfo", schoolInfo);
+                model.addAttribute("perHour", perHour);
+                return "redirect:/user/view/" + addressId;
             }else{
                 model.addAttribute("error", "There are no schools by that name.");
                 return "/user/search";
@@ -86,7 +92,7 @@ public class UserController {
 
         }
 
-        return "redirect:/";
+        return "redirect:/user";
     }
 
 }

@@ -98,16 +98,7 @@ public class AdminController {
 
         newSchoolInfo.setAddress(presentAddress);
 
-        //calculate and save cost per hour
-        Double perHourNum = (newSchoolInfo.getTuition())*4/(newSchoolInfo.getHours());
-        NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        String perHour = formatter.format(perHourNum);
-        newSchoolInfo.setPerHour(perHour);
-
         schoolInfoDao.save(newSchoolInfo);
-
-        //TODO: add perHour to the SchoolInfo database, tried delete and save again
-      //  schoolInfoDao.save(newSchoolInfo);
 
         return "redirect:/admin"; //display list of all schools...or just school entered...?
     }
@@ -118,8 +109,7 @@ public class AdminController {
         Address address = addressDao.findById(addressId).orElse(null);
         SchoolInfo schoolInfo = schoolInfoDao.findByAddressId(addressId);
 
-        Double perHourNum = (schoolInfo.getTuition())*4/(schoolInfo.getHours());
-
+        Double perHourNum = (schoolInfo.getTuition())/(schoolInfo.getHours()*4);
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         String perHour = formatter.format(perHourNum);
 
@@ -176,7 +166,7 @@ public class AdminController {
                 return "/admin/login";
                 }
             }
-        return "redirect:/";
+        return "redirect:/admin/login";
     }
 
 }
