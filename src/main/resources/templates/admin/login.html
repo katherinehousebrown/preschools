@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
+<div class="admin-backdrop">
 <head th:replace="fragments :: head"></head>
-<body class="jumbotron list-view">
+
+<body class="container jumbotron">
 
 <nav th:replace="fragments :: adminNav"></nav>
 
-<div class="wrapper fadeInDown">
-    <div id="formContent">
-        <div class="text-warning">
-            <h1 th:text="${title}"></h1>
-        </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Sign In</h5>
+                    <form method="post" class="form-signin" th:object="${admin}">
+                        <div class="form-label-group">
+                            <input class="form-control" th:field="*{userName}" placeholder="admin username" required autofocus/>
 
-        <form method="post" th:object="${admin}">
-            <input class="fadeIn second" th:field="*{userName}" placeholder="admin username"/>
-            <input class="fadeIn third" th:field="*{password}" placeholder="password"/>
-            <input type="submit" class="fadeIn fourth" value="Log In"/>
-        </form>
+                            <label>Admin Username</label><br/>
+                        </div>
 
-        <div class="text-danger">
-            <div th:text="${error}"></div>
+                        <div class="form-label-group">
+                            <input class="form-control" th:field="*{password}" placeholder="password" required/>
+                            <label>Password</label>
+                            <br/>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">log in</button>
+                        <br/>
+                        <br/>
+
+                    </form>
+                </div>
+            </div>
         </div>
-<!--
-        <div id="formFooter">
-            <a class="underlineHover" href="#">Forgot Password?</a>
-        </div>
--->
     </div>
 </div>
-
-
 </body>
+
+</div>
 </html>

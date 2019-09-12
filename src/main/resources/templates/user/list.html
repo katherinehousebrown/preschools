@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
+<div class="list-background">
 
-<body class="container jumbotron" th:style="'background: url('+@{images/crayons.jpg} +');'">
+<body class="list-view list background">
 
 <nav th:replace="fragments :: userNav"></nav>
 
@@ -12,10 +13,10 @@
 
 <div class="card card-body bg-white">
     <div th:each="address : ${addresses}">
-        <p th:unless="${addresses}" and ${addresses.size()}>No Preschools Listed</p>
+    <p th:unless="${addresses}" and ${addresses.size()}>No Preschools Listed</p>
         <table class="table table-striped">
             <tr>
-                <a th:href="'/user/view/' + ${address.id}" th:text="${address.name}"></a>
+            <a th:href="'/user/view/' + ${address.id}" th:text="${address.name}"></a>
                 <div class="col-5">
                     <td th:text="${address.address1} + ', ' + ${address.city} + ', ' + ${address.state} + ' ' + ${address.zipCode}"></td>
                 </div>
@@ -24,8 +25,6 @@
     </div>
 </div>
 
-
-
-
 </body>
+</div>
 </html>

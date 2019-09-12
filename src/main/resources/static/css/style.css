@@ -1,21 +1,35 @@
 
-.background-picture{
- background-image: url('../static/images/coloredPencils.jpg');
- background-size: cover;
- background-repeat: no-repeat;
+
+.all-padding{
+  padding: 5rem, 2rem, 5rem, 2rem;
 }
 
-body{
-  padding: 5rem, 2rem, 5rem, 2rem;
-  background-color: ;
-}
 .top-padding{
     padding-top: 2rem;
 }
 
+
+.list-background{
+    background-image: url("https://cdn.pixabay.com/photo/2019/06/14/09/21/crayon-frame-4273182__480.png");
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.search-background{
+    background-image: url("https://cdn.pixabay.com/photo/2018/02/15/18/31/people-3155982_1280.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .backdrop{
-    width= 100%;
-    background-position: center;
+    background-image: url("https://cdn.pixabay.com/photo/2016/06/09/02/42/crayons-1445053_1280.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.admin-backdrop{
+    background-image: url("https://cdn.pixabay.com/photo/2016/04/03/21/11/color-1305606__480.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -44,5 +58,8 @@ body{
   background-size: cover;
 }
 
-
+.jumbotron{
+    margin-top: 20px;
+    background-image: url(""
+}
 
