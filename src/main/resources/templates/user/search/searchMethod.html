@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org/">
+<html lang="en" xmlns:th="http://thymeleaf.org/" xmlns:type="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments :: head"></head>
 <body class="container jumbotron">
 <nav th:replace="fragments :: userNav"></nav>
@@ -12,10 +12,9 @@
             <h1><div th:text="${title}"></div></h1>
         </div><br/>
 
-    <div class="form-check">
-        <input class="form-check-input" type="radio" th:value="${name}" value="name">
-        <label class="form-check-label" th:name="searchChoice">Name</label>
-    </div>
+    <div><input type="radio" onclick="window.location='/user/search/name';"/> Name</div>
+    <div><input type="radio" onclick="window.location='/user/search/pottyTrained';"/> Potty Trained</div>
+    <div><input type="radio" onclick="window.location='/user/search/tuition';"/> Tuition</div>
 
     </div>
     <br/>
