@@ -73,7 +73,7 @@ public class UserController {
     {
         int i = 1;
         for(Address address : addressDao.findAll()){
-            if(address.getName().equals(searchName)){
+            if(address.getName().toLowerCase().equals(searchName.toLowerCase())){
                 Integer addressId = address.getId();
                 SchoolInfo schoolInfo = schoolInfoDao.findByAddressId(addressId);
 
@@ -85,14 +85,10 @@ public class UserController {
                 model.addAttribute("schoolInfo", schoolInfo);
                 model.addAttribute("perHour", perHour);
                 return "redirect:/user/view/" + addressId;
-            }else{
-                model.addAttribute("error", "There are no schools by that name.");
-                return "/user/search";
             }
-
         }
-
-        return "redirect:/user";
+        model.addAttribute("error", "There are no schools by that name.");
+        return "/user/search";
     }
 
 }
