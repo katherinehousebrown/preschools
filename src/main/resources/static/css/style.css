@@ -5,12 +5,18 @@
 }
 
 .top-padding{
-    padding-top: 2rem;
+    padding-top: 18rem;
 }
 
+.view-background{
+    background-image: url("https://cdn.pixabay.com/photo/2013/07/28/14/40/colored-pencils-168391_1280.jpg");
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .list-background{
-    background-image: url("https://cdn.pixabay.com/photo/2019/06/14/09/21/crayon-frame-4273182__480.png");
+    background-image: url("https://cdn.pixabay.com/photo/2014/12/28/13/54/pen-581881_1280.jpg");
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -23,7 +29,7 @@
 }
 
 .backdrop{
-    background-image: url("https://cdn.pixabay.com/photo/2016/06/09/02/42/crayons-1445053_1280.jpg");
+    background-image: url("https://cdn.pixabay.com/photo/2018/08/10/12/03/school-tools-3596680__480.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }

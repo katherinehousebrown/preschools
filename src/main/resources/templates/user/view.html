@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container jumbotron" th:object="${address}">
+<body class="view-background" th:object="${address}">
 <div th:object="${schoolInfo}">
 
 <nav th:replace="fragments :: userNav"></nav>
 
 <div class="single-view" style="background-color:info;">
-    <h1 th:text="${title}"></h1>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
 
     <div class="container">
+        <h1 th:text="${title}"></h1>
         <span th:text="${address.address1}"></span><br/>
         <span th:text="${address.city} + ', ' + ${address.state} + ' ' + ${address.zipCode}"></span><br/>
         <a th:href="'http://' + ${address.website}" th:text="${address.website}"></a><br/><br/>
