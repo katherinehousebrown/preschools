@@ -2,8 +2,9 @@
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <div class="admin-background">
-<body class="container text-white">
+<body class="text-white">
 <br/><br/>
+<div class="left-padding">
     <h1 th:text="${title}"></h1>
 
 
@@ -95,12 +96,14 @@
             <label th:for="website">Website</label>
             <input class="form-control" th:field="*{website}" placeholder="Enter Website" />
             <br/><br/>
-            <input type="submit" value="Submit School Information"/><br/><br/><br/>
+            <input type="submit" value="Submit School Information"/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/><br/><br/><br/>
         </div>
-
-
     </div>
+
+
 </form>
+</div>
 </body>
 </div>
 </html>

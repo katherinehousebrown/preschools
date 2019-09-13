@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <div class="admin-background">
-    <body class="container text-white">
+    <div class="left-padding">
+    <body class="text-white">
     <br/><br/>
     <h1 th:text="${title}"></h1>
 
@@ -46,9 +47,12 @@
 
     <input type="hidden" th:value="${newAddressFK}" name="newAddressFK"/>
     <input type="submit" value="Submit School Information"/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 
 </form>
 
 </body>
+    </div>
+</div>
 </html>
