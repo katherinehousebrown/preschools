@@ -57,6 +57,13 @@ public class AdminController {
             model.addAttribute("title", "Add New Preschool");
             return "admin/address";
         }
+        for (Address address : addressDao.findAll()){
+            if (address.getName().equals(newAddress.getName())){
+                model.addAttribute("error", "A school by that name has already been entered. " +
+                        "Please enter a new school.");
+                return "admin/address";
+            }
+        }
 
         addressDao.save(newAddress);
 

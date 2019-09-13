@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container jumbotron" th:object="${address}">
+<body class="view-background" th:object="${address}">
 <div th:object="${schoolInfo}">
 
-<nav th:replace="fragments :: adminNav"></nav>
+    <nav th:replace="fragments :: adminNav"></nav>
 
-<div class="single-view" style="background-color:info;">
-    <h1 th:text="${title}"></h1>
+    <div class="single-view" style="background-color:info;">
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
-    <div class="container">
-        <span th:text="${address.address1}"></span><br/>
-        <span th:text="${address.city} + ', ' + ${address.state} + ' ' + ${address.zipCode}"></span><br/>
-        <a th:href="'http://' + ${address.website}" th:text="${address.website}"></a><br/><br/>
-        <span th:text="'Does the child need to be potty trained? ' + ${schoolInfo.pottyTrained}"></span><br/>
-        <span th:text="'The Teacher:Student ratio is 1:'+ ${schoolInfo.ratio}"></span><br/>
-        <span th:text="'The cost per hour is ' + ${perHour} "></span><br/>
 
+        <div class="container">
+            <h1 th:text="${title}"></h1>
+            <span th:text="${address.address1}"></span><br/>
+            <span th:text="${address.city} + ', ' + ${address.state} + ' ' + ${address.zipCode}"></span><br/>
+            <a th:href="'http://' + ${address.website}" th:text="${address.website}"></a><br/><br/>
+            <span th:text="'Does the child need to be potty trained? ' + ${schoolInfo.pottyTrained}"></span><br/>
+            <span th:text="'The Teacher:Student ratio is 1:' + ${schoolInfo.ratio}"></span><br/>
+            <span th:text="'The cost per hour is ' + ${perHour}"></span><br/>
+
+        </div>
     </div>
 </div>
-</div>
+
 </body>
 </html>

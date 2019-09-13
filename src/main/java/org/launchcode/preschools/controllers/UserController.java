@@ -70,12 +70,18 @@ public class UserController {
         if(searchChoice.equals("name")){
             model.addAttribute("title", "Search by Name");
             return "redirect:/user/search/name";
-        } else if (searchChoice.equals("pottyTrained")) {
-            model.addAttribute("title", "Search by Name");
+        }
+        if (searchChoice.equals("pottyTrained")) {
+            model.addAttribute("title", "Search by Potty Trained");
             return "redirect:/user/search/pottyTrained";
-        } else if (searchChoice.equals("tuition")){
+        }
+        if (searchChoice.equals("tuition")){
             model.addAttribute("title", "Search by Tuition");
             return "redirect:/user/search/tuition";
+        }
+        if (searchChoice.equals("location")) {
+            model.addAttribute("title", "Search by Location");
+            return "redirect:/user/search/location";
         }
         return "redirect:/user/search/searchMethod";
     }

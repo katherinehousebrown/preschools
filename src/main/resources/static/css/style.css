@@ -8,8 +8,22 @@
     padding-top: 18rem;
 }
 
+.admin-background{
+    background-image: url("https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366_1280.jpg");
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .view-background{
     background-image: url("https://cdn.pixabay.com/photo/2013/07/28/14/40/colored-pencils-168391_1280.jpg");
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.name-background{
+    background-image: url("https://cdn.pixabay.com/photo/2016/02/19/11/35/crayons-1209804_1280.jpg");
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;

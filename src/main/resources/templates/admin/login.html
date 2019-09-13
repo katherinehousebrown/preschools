@@ -5,14 +5,17 @@
 
 <body class="container jumbotron">
 
-<nav th:replace="fragments :: adminNav"></nav>
+<nav th:replace="fragments :: userNav"></nav>
+
 
 <div class="container">
+
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Sign In</h5>
+
                     <form method="post" class="form-signin" th:object="${admin}">
                         <div class="form-label-group">
                             <input class="form-control" th:field="*{userName}" placeholder="admin username" required autofocus/>
@@ -21,20 +24,23 @@
                         </div>
 
                         <div class="form-label-group">
-                            <input class="form-control" th:field="*{password}" placeholder="password" required/>
+                            <input class="form-control" type="password" th:field="*{password}" placeholder="password" required/>
                             <label>Password</label>
                             <br/>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">log in</button>
                         <br/>
                         <br/>
-
+                        <div class="text-danger">
+                            <div th:text="${error}"></div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 
 </div>

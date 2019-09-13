@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-
-<body class="container jumbotron">
+<div class="admin-background">
+<body class="container text-white">
+<br/><br/>
     <h1 th:text="${title}"></h1>
 
 
@@ -94,10 +95,12 @@
             <label th:for="website">Website</label>
             <input class="form-control" th:field="*{website}" placeholder="Enter Website" />
             <br/><br/>
-            <input type="submit" value="Submit School Information"/>
+            <input type="submit" value="Submit School Information"/><br/><br/><br/>
         </div>
+
 
     </div>
 </form>
 </body>
+</div>
 </html>

@@ -4,8 +4,6 @@
 <body class="search-background">
 <nav th:replace="fragments :: userNav"></nav>
 
-
-
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -14,8 +12,9 @@
                         <h1 th:text="${title}" class="card-title text-center"></h1>
                             <form method="post">
                                 <label><input type="radio" onclick="window.location='/user/search/name';"/> Name</label><br/>
-                                <label><input type="radio" onclick="window.location='/user/search/pottyTrained';"/> Potty Trained</label><br/>
-                                <label><input type="radio" onclick="window.location='/user/search/tuition';"/> Tuition</label>
+                                <label><input type="radio" onclick="window.location='/user/search/pottyTrained';"/> Potty Trained **COMING SOON**</label><br/>
+                                <div> Tuition **COMING SOON**</div>
+                                <div> Location **COMING SOON**</div><br/>
                             </form>
                     </div>
                 </div>
