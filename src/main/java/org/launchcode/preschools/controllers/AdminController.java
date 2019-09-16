@@ -119,7 +119,10 @@ public class AdminController {
         Double perHourNum = (schoolInfo.getTuition())/(schoolInfo.getHours()*4);
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
         String perHour = formatter.format(perHourNum);
+        Double tuition = schoolInfo.getTuition();
+        String tuition_currency = formatter.format(tuition);
 
+        model.addAttribute("tuition", tuition_currency);
         model.addAttribute("perHour", perHour);
         model.addAttribute("address", address);
         model.addAttribute("schoolInfo", schoolInfo);
