@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/user")
@@ -125,6 +126,38 @@ public class UserController {
     {
         model.addAttribute("title", "Search by Potty Trained");
         return "/user/search/pottyTrained";
+    }
+
+    @RequestMapping(value = "/search/pottyTrained", method = RequestMethod.POST)
+    public String processSearchPottyTrained(Model model, @RequestParam String searchPottyTrained)
+    {
+        ArrayList<Address> pottyTrainedAddresses = new ArrayList<>();
+        ArrayList<Address> notPottyTrainedAddresses = new ArrayList<>();
+
+        for (SchoolInfo schoolInfo: schoolInfoDao.findAll()) {
+            if (schoolInfo.getPottyTrained().equals("Yes")) {
+                Address address = schoolInfo.getAddress();
+                pottyTrainedAddresses.add(address);
+            }
+            if (schoolInfo.getPottyTrained().equals("No")) {
+                Address address = schoolInfo.getAddress();
+                notPottyTrainedAddresses.add(address);
+            }
+        }
+        if(searchPottyTrained.equals("Yes"))
+        {
+            model.addAttribute("addresses", pottyTrainedAddresses);
+            model.addAttribute("title", "Search by Potty Trained");
+            return "redirect:/user/list";
+        }
+        if(searchPottyTrained.equals("No"))
+        {
+            model.addAttribute("addresses", notPottyTrainedAddresses);
+            model.addAttribute("title", "Search by Potty Trained");
+            return "redirect:/user/list";
+        }
+    return "redirect:";
+
     }
 
 
