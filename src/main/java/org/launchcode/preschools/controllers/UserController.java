@@ -131,6 +131,7 @@ public class UserController {
     @RequestMapping(value = "/search/pottyTrained", method = RequestMethod.POST)
     public String processSearchPottyTrained(Model model, @RequestParam String searchPottyTrained)
     {
+//        System.out.print("************" + searchPottyTrained + "***************");
         ArrayList<Address> pottyTrainedAddresses = new ArrayList<>();
         ArrayList<Address> notPottyTrainedAddresses = new ArrayList<>();
 
@@ -156,7 +157,7 @@ public class UserController {
             model.addAttribute("title", "Search by Potty Trained");
             return "redirect:/user/list";
         }
-    return "redirect:";
+    return "redirect:/user/search/pottyTrained";
 
     }
 
