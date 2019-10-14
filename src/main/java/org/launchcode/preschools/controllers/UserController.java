@@ -139,25 +139,20 @@ public class UserController {
             if (schoolInfo.getPottyTrained().equals("Yes")) {
                 Address address = schoolInfo.getAddress();
                 pottyTrainedAddresses.add(address);
+                model.addAttribute("addresses", pottyTrainedAddresses);
+                model.addAttribute("title", "Search by Potty Trained");
+                return "redirect:/user/list";
             }
             if (schoolInfo.getPottyTrained().equals("No")) {
                 Address address = schoolInfo.getAddress();
                 notPottyTrainedAddresses.add(address);
+                model.addAttribute("addresses", notPottyTrainedAddresses);
+                model.addAttribute("title", "Search by Potty Trained");
+                return "redirect:/user/list";
             }
+
         }
-        if(searchPottyTrained.equals("Yes"))
-        {
-            model.addAttribute("addresses", pottyTrainedAddresses);
-            model.addAttribute("title", "Search by Potty Trained");
-            return "redirect:/user/list";
-        }
-        if(searchPottyTrained.equals("No"))
-        {
-            model.addAttribute("addresses", notPottyTrainedAddresses);
-            model.addAttribute("title", "Search by Potty Trained");
-            return "redirect:/user/list";
-        }
-    return "redirect:/user/search/pottyTrained";
+    return "redirect:/user/search/searchMethod";
 
     }
 
